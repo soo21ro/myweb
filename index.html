@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人 IP 作品集 | Portfolio</title>
+    <style>
+        /* CSS Reset & 基本變數定義 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --primary-color: #58a6ff;
+            --accent-color: #7ee787;
+            --text-color: #c9d1d9;
+            --text-muted: #8b949e;
+            --border-color: #30363d;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* 頂部導覽列 */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(13, 17, 23, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* 主頁 Banner (Hero Section) */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1.5rem;
+            background: radial-gradient(circle at center, #1f293d 0%, var(--bg-color) 80%);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.75rem;
+            background-color: var(--primary-color);
+            color: #0d1117;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #79c0ff;
+            transform: translateY(-2px);
+        }
+
+        /* 通用區塊樣式 */
+        section {
+            padding: 6rem 2rem 4rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #ffffff;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: var(--primary-color);
+            margin: 0.5rem auto 0;
+            border-radius: 2px;
+        }
+
+        /* 分類篩選按鈕 */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1.25rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--primary-color);
+            color: #0d1117;
+            border-color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* 作品卡片網格 */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: var(--primary-color);
+            box-shadow: 0 8px 20px rgba(88, 166, 255, 0.15);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            background-color: #21262d;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .card-body {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-tag {
+            font-size: 0.8rem;
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            color: #ffffff;
+            margin-bottom: 0.75rem;
+        }
+
+        .card-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            flex-grow: 1;
+            margin-bottom: 1.25rem;
+        }
+
+        /* 頁尾 */
+        footer {
+            text-align: center;
+            padding: 2.5rem;
+            background-color: #010409;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* RWD 響應式微調 */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .nav-links { gap: 1rem; }
+            section { padding: 4rem 1rem 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 導覽列 -->
+    <header>
+        <nav>
+            <a href="#" class="logo">YOUR_IP_NAME</a>
+            <ul class="nav-links">
+                <li><a href="#about">關於我</a></li>
+                <li><a href="#portfolio">歷年作品</a></li>
+                <li><a href="#contact">聯絡方式</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Banner 區域 -->
+    <section class="hero">
+        <h1>歡迎來到我的個人 IP 作品集</h1>
+        <p>收錄大學四年來在專題、角色視覺設計及課堂專案的成果累積。</p>
+        <a href="#portfolio" class="btn">探索歷年作品</a>
+    </section>
+
+    <!-- 關於我 -->
+    <section id="about">
+        <h2 class="section-title">關於我 / About</h2>
+        <p style="text-align: center; color: var(--text-muted); max-width: 750px; margin: 0 auto; line-height: 1.8;">
+            我是 [你的名字]，熱衷於數位創作與主題專案發想。大學四年間，我專注於建立具個人風格的視覺設計與實作專案，從初期概念構思、角色設定到最終成果呈現均具備完整經驗。
+        </p>
+    </section>
+
+    <!-- 作品展示區 -->
+    <section id="portfolio">
+        <h2 class="section-title">大學成果展示</h2>
+
+        <!-- 分類篩選按鈕 -->
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">全部作品</button>
+            <button class="filter-btn" data-filter="capstone">畢業專題</button>
+            <button class="filter-btn" data-filter="character">角色與視覺</button>
+            <button class="filter-btn" data-filter="coursework">課堂作業</button>
+        </div>
+
+        <!-- 卡片清單 -->
+        <div class="portfolio-grid">
+
+            <!-- 卡片 1 (畢業專題) -->
+            <div class="card" data-category="capstone">
+                <img src="https://via.placeholder.com/400x220/21262d/8b949e?text=Capstone+Project" alt="畢業專題預覽" class="card-img">
+                <div class="card-body">
+                    <span class="card-tag">畢業專題</span>
+                    <h3 class="card-title">大四 - 畢業核心專題</h3>
+                    <p class="card-desc">整合大學四年所學的集大成之作，涵蓋完整的概念設定、專案開發與最終成果發表。</p>
+                </div>
+            </div>
+
+            <!-- 卡片 2 (角色與視覺) -->
+            <div class="card" data-category="character">
+                <img src="https://via.placeholder.com/400x220/21262d/8b949e?text=IP+Character+Design" alt="角色設計預覽" class="card-img">
+                <div class="card-body">
+                    <span class="card-tag">角色與視覺</span>
+                    <h3 class="card-title">大三 - 個人 IP 角色造型設計</h3>
+                    <p class="card-desc">探索特定比例與材質質感的角色設計，包含服裝設定、情境配置與周邊延展規劃。</p>
+                </div>
+            </div>
+
+            <!-- 卡片 3 (課堂作業) -->
+            <div class="card" data-category="coursework">
+                <img src="https://via.placeholder.com/400x220/21262d/8b949e?text=Coursework+Project" alt="課堂成果預覽" class="card-img">
+                <div class="card-body">
+                    <span class="card-tag">課堂作業</span>
+                    <h3 class="card-title">大二 - 專題成果與簡述</h3>
+                    <p class="card-desc">結合特定主題情境進行的專案實作，訓練議題整理與簡潔清晰的成果歸納能力。</p>
+                </div>
+            </div>
+
+            <!-- 卡片 4 (課堂作業) -->
+            <div class="card" data-category="coursework">
+                <img src="https://via.placeholder.com/400x220/21262d/8b949e?text=Basic+Design" alt="基礎創作預覽" class="card-img">
+                <div class="card-body">
+                    <span class="card-tag">課堂作業</span>
+                    <h3 class="card-title">大一 - 基礎創作與數位設計</h3>
+                    <p class="card-desc">大學初期的基礎造型與視覺構圖練習，建立對數位軟體與視覺質感的初步掌控。</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 聯絡方式 -->
+    <section id="contact">
+        <h2 class="section-title">聯絡方式 / Contact</h2>
+        <div style="text-align: center; color: var(--text-muted);">
+            <p>如果對我的專案或個人 IP 有興趣，歡迎透過電子郵件與我聯繫：</p>
+            <p style="margin-top: 1rem; font-size: 1.2rem; color: var(--primary-color);">your.email@example.com</p>
+        </div>
+    </section>
+
+    <!-- 頁尾 -->
+    <footer>
+        <p>&copy; 2026 Your Name. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript 篩選互動邏輯 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const cards = document.querySelectorAll('.card');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // 切換按鈕高亮狀態
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const filterValue = btn.getAttribute('data-filter');
+
+                    // 篩選卡片顯示狀態
+                    cards.forEach(card => {
+                        const category = card.getAttribute('data-category');
+                        if (filterValue === 'all' || category === filterValue) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

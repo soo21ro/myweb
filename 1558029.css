@@ -1,0 +1,80 @@
+/* 基本重設 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #f5f6fa;
+    color: #333;
+    padding: 40px 20px;
+}
+
+/* 頁首樣式 */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+header h1 {
+    font-size: 2.2rem;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+header p {
+    color: #7f8c8d;
+}
+
+/* 圖片畫廊容器（排版） */
+.gallery-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 圖片外框風格 */
+.gallery-item {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    text-decoration: none;
+}
+
+/* 圖片本體尺寸與裁切 */
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    cursor: pointer;
+}
+
+/* -----------------------------------
+   滑鼠懸停晃動效果 (Shake Animation)
+----------------------------------- */
+
+/* 定義左右搖晃關鍵影格 */
+@keyframes shake {
+    0% { transform: rotate(0deg); }
+    20% { transform: rotate(-5deg); }
+    40% { transform: rotate(5deg); }
+    60% { transform: rotate(-3deg); }
+    80% { transform: rotate(3deg); }
+    100% { transform: rotate(0deg); }
+}
+
+/* 當滑鼠移上去時觸發動畫 */
+.gallery-item:hover {
+    animation: shake 0.5s ease-in-out infinite;
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+}

@@ -1,377 +1,180 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>個人 IP 作品集 | Portfolio</title>
-    <style>
-        /* CSS Reset & 基本變數定義 */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        :root {
-            --bg-color: #0d1117;
-            --card-bg: #161b22;
-            --primary-color: #58a6ff;
-            --accent-color: #7ee787;
-            --text-color: #c9d1d9;
-            --text-muted: #8b949e;
-            --border-color: #30363d;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            scroll-behavior: smooth;
-        }
-
-        /* 頂部導覽列 */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: rgba(13, 17, 23, 0.85);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        nav {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-        }
-
-        .logo {
-            font-size: 1.25rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            text-decoration: none;
-            letter-spacing: 0.5px;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 1.5rem;
-        }
-
-        .nav-links a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        /* 主頁 Banner (Hero Section) */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 1.5rem;
-            background: radial-gradient(circle at center, #1f293d 0%, var(--bg-color) 80%);
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            color: #ffffff;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            max-width: 650px;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.75rem 1.75rem;
-            background-color: var(--primary-color);
-            color: #0d1117;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: transform 0.2s, background-color 0.3s;
-        }
-
-        .btn:hover {
-            background-color: #79c0ff;
-            transform: translateY(-2px);
-        }
-
-        /* 通用區塊樣式 */
-        section {
-            padding: 6rem 2rem 4rem;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            color: #ffffff;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 3px;
-            background: var(--primary-color);
-            margin: 0.5rem auto 0;
-            border-radius: 2px;
-        }
-
-        /* 分類篩選按鈕 */
-        .filter-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 0.75rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            background-color: var(--card-bg);
-            color: var(--text-color);
-            border: 1px solid var(--border-color);
-            padding: 0.5rem 1.25rem;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 0.9rem;
-        }
-
-        .filter-btn.active, .filter-btn:hover {
-            background-color: var(--primary-color);
-            color: #0d1117;
-            border-color: var(--primary-color);
-            font-weight: bold;
-        }
-
-        /* 作品卡片網格 */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card:hover {
-            transform: translateY(-6px);
-            border-color: var(--primary-color);
-            box-shadow: 0 8px 20px rgba(88, 166, 255, 0.15);
-        }
-
-        .card-img {
-            width: 100%;
-            height: 200px;
-            background-color: #21262d;
-            object-fit: cover;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .card-body {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card-tag {
-            font-size: 0.8rem;
-            color: var(--accent-color);
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-        }
-
-        .card-title {
-            font-size: 1.2rem;
-            color: #ffffff;
-            margin-bottom: 0.75rem;
-        }
-
-        .card-desc {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            flex-grow: 1;
-            margin-bottom: 1.25rem;
-        }
-
-        /* 頁尾 */
-        footer {
-            text-align: center;
-            padding: 2.5rem;
-            background-color: #010409;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        /* RWD 響應式微調 */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            .nav-links { gap: 1rem; }
-            section { padding: 4rem 1rem 2rem; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FIRST CAMPUS 大一新生校園生活選物網站">
+  <title>FIRST CAMPUS｜大一新生生活選物</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home" aria-label="FIRST CAMPUS 首頁">
+        <span class="brand-mark">01</span>
+        <span>FIRST CAMPUS</span>
+      </a>
+      <nav aria-label="主要導覽">
+        <a href="#about">關於品牌</a>
+        <a href="#products">新生選物</a>
+        <a href="#delivery">配送說明</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="nav-cta" href="#products">開始逛逛</a>
+    </div>
+  </header>
 
-    <!-- 導覽列 -->
-    <header>
-        <nav>
-            <a href="#" class="logo">YOUR_IP_NAME</a>
-            <ul class="nav-links">
-                <li><a href="#about">關於我</a></li>
-                <li><a href="#portfolio">歷年作品</a></li>
-                <li><a href="#contact">聯絡方式</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Banner 區域 -->
+  <main id="home">
     <section class="hero">
-        <h1>歡迎來到我的個人 IP 作品集</h1>
-        <p>收錄大學四年來在專題、角色視覺設計及課堂專案的成果累積。</p>
-        <a href="#portfolio" class="btn">探索歷年作品</a>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">FOR YOUR FIRST YEAR</p>
+          <h1>把大學第一天，<br><em>準備得剛剛好。</em></h1>
+          <p class="hero-text">為剛進入大學的新生設計的校園生活選物。從裝課本、裝水，到整理第一份筆記，讓你的新生活從實用的小物開始。</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#products">探索新生選物 →</a>
+            <a class="text-link" href="#about">認識 FIRST CAMPUS</a>
+          </div>
+          <div class="hero-note"><strong>3</strong><span>款入門商品<br>陪你開始大學生活</span></div>
+        </div>
+        <div class="hero-art">
+          <img src="hero.svg" alt="FIRST CAMPUS 大一新生校園生活主視覺">
+        </div>
+      </div>
     </section>
 
-    <!-- 關於我 -->
-    <section id="about">
-        <h2 class="section-title">關於我 / About</h2>
-        <p style="text-align: center; color: var(--text-muted); max-width: 750px; margin: 0 auto; line-height: 1.8;">
-            我是 [你的名字]，熱衷於數位創作與主題專案發想。大學四年間，我專注於建立具個人風格的視覺設計與實作專案，從初期概念構思、角色設定到最終成果呈現均具備完整經驗。
-        </p>
+    <section class="intro section" id="about">
+      <div class="container intro-grid">
+        <div>
+          <p class="eyebrow">OUR IDEA</p>
+          <h2>給剛入學的你，<br>一套簡單的開始。</h2>
+        </div>
+        <p>大一的生活充滿第一次：第一次找教室、第一次上通識、第一次自己安排課表。FIRST CAMPUS 將「新生會真正用到的東西」整理成簡單、好帶、好搭配的校園選物。</p>
+      </div>
     </section>
 
-    <!-- 作品展示區 -->
-    <section id="portfolio">
-        <h2 class="section-title">大學成果展示</h2>
-
-        <!-- 分類篩選按鈕 -->
-        <div class="filter-buttons">
-            <button class="filter-btn active" data-filter="all">全部作品</button>
-            <button class="filter-btn" data-filter="capstone">畢業專題</button>
-            <button class="filter-btn" data-filter="character">角色與視覺</button>
-            <button class="filter-btn" data-filter="coursework">課堂作業</button>
+    <section class="products section" id="products">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">FRESHMAN PICKS</p>
+            <h2>三款新生入門選物</h2>
+          </div>
+          <p>校園日常 × 實用設計</p>
         </div>
 
-        <!-- 卡片清單 -->
-        <div class="portfolio-grid">
-
-            <!-- 卡片 1 (畢業專題) -->
-            <div class="card" data-category="capstone">
-                <img src="https://via.placeholder.com/400x220/21262d/8b949e?text=Capstone+Project" alt="畢業專題預覽" class="card-img">
-                <div class="card-body">
-                    <span class="card-tag">畢業專題</span>
-                    <h3 class="card-title">大四 - 畢業核心專題</h3>
-                    <p class="card-desc">整合大學四年所學的集大成之作，涵蓋完整的概念設定、專案開發與最終成果發表。</p>
-                </div>
+        <div class="product-grid">
+          <article class="product-card">
+            <div class="product-image"><img src="tote.svg" alt="DAY 1 校園帆布袋"></div>
+            <div class="product-info">
+              <span class="tag">01 / EVERYDAY</span>
+              <h3>DAY 1 校園帆布袋</h3>
+              <p class="desc">上課、社團、圖書館都能用的輕量帆布袋。</p>
+              <dl>
+                <div><dt>價格</dt><dd>NT$ 490</dd></div>
+                <div><dt>尺寸</dt><dd>38 × 34 × 10 cm</dd></div>
+              </dl>
+              <button class="product-button" type="button" onclick="showMessage('DAY 1 校園帆布袋已加入你的學習清單！')">加入學習清單</button>
             </div>
+          </article>
 
-            <!-- 卡片 2 (角色與視覺) -->
-            <div class="card" data-category="character">
-                <img src="https://via.placeholder.com/400x220/21262d/8b949e?text=IP+Character+Design" alt="角色設計預覽" class="card-img">
-                <div class="card-body">
-                    <span class="card-tag">角色與視覺</span>
-                    <h3 class="card-title">大三 - 個人 IP 角色造型設計</h3>
-                    <p class="card-desc">探索特定比例與材質質感的角色設計，包含服裝設定、情境配置與周邊延展規劃。</p>
-                </div>
+          <article class="product-card featured">
+            <div class="product-image"><img src="bottle.svg" alt="GO 校園隨行瓶"></div>
+            <div class="product-info">
+              <span class="tag">02 / DAILY</span>
+              <h3>GO 校園隨行瓶</h3>
+              <p class="desc">適合課間補水，放進側袋也不占空間。</p>
+              <dl>
+                <div><dt>價格</dt><dd>NT$ 390</dd></div>
+                <div><dt>尺寸</dt><dd>500 ml／高 22 cm</dd></div>
+              </dl>
+              <button class="product-button" type="button" onclick="showMessage('GO 校園隨行瓶已加入你的學習清單！')">加入學習清單</button>
             </div>
+          </article>
 
-            <!-- 卡片 3 (課堂作業) -->
-            <div class="card" data-category="coursework">
-                <img src="https://via.placeholder.com/400x220/21262d/8b949e?text=Coursework+Project" alt="課堂成果預覽" class="card-img">
-                <div class="card-body">
-                    <span class="card-tag">課堂作業</span>
-                    <h3 class="card-title">大二 - 專題成果與簡述</h3>
-                    <p class="card-desc">結合特定主題情境進行的專案實作，訓練議題整理與簡潔清晰的成果歸納能力。</p>
-                </div>
+          <article class="product-card">
+            <div class="product-image"><img src="notebook.svg" alt="NEW START 課堂筆記本"></div>
+            <div class="product-info">
+              <span class="tag">03 / STUDY</span>
+              <h3>NEW START 課堂筆記本</h3>
+              <p class="desc">分頁設計，方便整理課堂重點與待辦事項。</p>
+              <dl>
+                <div><dt>價格</dt><dd>NT$ 220</dd></div>
+                <div><dt>尺寸</dt><dd>A5／148 × 210 mm</dd></div>
+              </dl>
+              <button class="product-button" type="button" onclick="showMessage('NEW START 課堂筆記本已加入你的學習清單！')">加入學習清單</button>
             </div>
-
-            <!-- 卡片 4 (課堂作業) -->
-            <div class="card" data-category="coursework">
-                <img src="https://via.placeholder.com/400x220/21262d/8b949e?text=Basic+Design" alt="基礎創作預覽" class="card-img">
-                <div class="card-body">
-                    <span class="card-tag">課堂作業</span>
-                    <h3 class="card-title">大一 - 基礎創作與數位設計</h3>
-                    <p class="card-desc">大學初期的基礎造型與視覺構圖練習，建立對數位軟體與視覺質感的初步掌控。</p>
-                </div>
-            </div>
-
+          </article>
         </div>
+      </div>
     </section>
 
-    <!-- 聯絡方式 -->
-    <section id="contact">
-        <h2 class="section-title">聯絡方式 / Contact</h2>
-        <div style="text-align: center; color: var(--text-muted);">
-            <p>如果對我的專案或個人 IP 有興趣，歡迎透過電子郵件與我聯繫：</p>
-            <p style="margin-top: 1rem; font-size: 1.2rem; color: var(--primary-color);">your.email@example.com</p>
+    <section class="delivery section" id="delivery">
+      <div class="container delivery-box">
+        <div>
+          <p class="eyebrow">DELIVERY</p>
+          <h2>配送說明</h2>
+          <p>全台皆可配送。下單後約 2–4 個工作天出貨，實際到貨時間會依物流狀況而有所不同。</p>
         </div>
+        <div class="delivery-list">
+          <div><strong>01</strong><span>宅配｜滿 NT$ 1,000 免運，未滿收 NT$ 80。</span></div>
+          <div><strong>02</strong><span>超商取貨｜依結帳頁面可選門市為準。</span></div>
+          <div><strong>03</strong><span>包裹寄出後會提供物流追蹤資訊。</span></div>
+        </div>
+      </div>
     </section>
 
-    <!-- 頁尾 -->
-    <footer>
-        <p>&copy; 2026 Your Name. All rights reserved.</p>
-    </footer>
+    <section class="faq section" id="faq">
+      <div class="container faq-grid">
+        <div>
+          <p class="eyebrow">FAQ</p>
+          <h2>新生常見問題</h2>
+          <p>第一次購買或第一次準備大學生活，都可以先看看這裡。</p>
+        </div>
+        <div class="faq-list">
+          <details open>
+            <summary>商品可以一起配送嗎？</summary>
+            <p>可以。若同筆訂單商品都有現貨，會盡量合併出貨，以一個包裹寄送。</p>
+          </details>
+          <details>
+            <summary>尺寸資料可以在哪裡看到？</summary>
+            <p>每項商品卡片都列有主要尺寸；實際商品可能存在些微測量誤差。</p>
+          </details>
+          <details>
+            <summary>這個網站可以直接完成付款嗎？</summary>
+            <p>目前此頁面是教學與作品展示用的前端網站，不會真的建立訂單或收取款項。</p>
+          </details>
+          <details>
+            <summary>我是第一次做網站，這個頁面可以修改嗎？</summary>
+            <p>可以。商品名稱、價格、圖片、文字與配色都集中在 HTML／CSS 中，適合拿來當課堂練習。</p>
+          </details>
+        </div>
+      </div>
+    </section>
 
-    <!-- JavaScript 篩選互動邏輯 -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const filterBtns = document.querySelectorAll('.filter-btn');
-            const cards = document.querySelectorAll('.card');
+    <section class="notice">
+      <div class="container">
+        <p><strong>教學用途聲明</strong>　本網站為 HTML／CSS 響應式網頁設計課程之示範作品，商品、價格、配送資訊與品牌皆為虛構內容，不代表實際商業販售或交易。頁面中的互動按鈕僅作前端展示用途。</p>
+      </div>
+    </section>
+  </main>
 
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    // 切換按鈕高亮狀態
-                    filterBtns.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
+  <footer>
+    <div class="container footer-wrap">
+      <div><strong>FIRST CAMPUS</strong><span>Start small. Go far.</span></div>
+      <p>© 2026 FIRST CAMPUS · 教學作品</p>
+    </div>
+  </footer>
 
-                    const filterValue = btn.getAttribute('data-filter');
-
-                    // 篩選卡片顯示狀態
-                    cards.forEach(card => {
-                        const category = card.getAttribute('data-category');
-                        if (filterValue === 'all' || category === filterValue) {
-                            card.style.display = 'flex';
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
-                });
-            });
-        });
-    </script>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script>
+    function showMessage(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(window.toastTimer);
+      window.toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+    }
+  </script>
 </body>
 </html>

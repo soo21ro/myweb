@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="日常好水 - 簡約風格水壺電商網站">
+  <title>日常好水｜水壺專賣店</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="#" class="logo">日常<span>好水</span></a>
+
+      <nav class="nav" aria-label="主要導覽">
+        <a href="#home">首頁</a>
+        <a href="#products">商品</a>
+        <a href="#about">關於我們</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <button class="cart-btn" type="button" onclick="showCart()">
+        🛒 購物車 <span id="cart-count">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <p class="eyebrow">EVERYDAY HYDRATION</p>
+          <h1>找到一個<br><strong>適合你的水壺</strong></h1>
+          <p class="hero-desc">
+            從通勤、運動到旅行，挑一款陪你度過每一天的水壺。
+            簡約設計、實用功能，讓喝水變成生活裡的小確幸。
+          </p>
+          <div class="hero-actions">
+            <a href="#products" class="btn btn-primary">立即選購</a>
+            <a href="#about" class="btn btn-light">了解更多</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <img src="images/01.png" alt="透明水壺">
+          <div class="hero-badge">人氣推薦<br><strong>透明水壺</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Category -->
+    <section class="categories">
+      <div class="container">
+        <div class="section-heading center">
+          <p class="eyebrow">CHOOSE YOUR STYLE</p>
+          <h2>依照你的生活選擇</h2>
+        </div>
+
+        <div class="category-grid">
+          <a href="#products" class="category-card">
+            <span>🎒</span>
+            <h3>日常通勤</h3>
+            <p>輕巧好攜帶</p>
+          </a>
+          <a href="#products" class="category-card">
+            <span>🏃</span>
+            <h3>運動健身</h3>
+            <p>大容量好補水</p>
+          </a>
+          <a href="#products" class="category-card">
+            <span>✈️</span>
+            <h3>旅行出遊</h3>
+            <p>方便收納不佔空間</p>
+          </a>
+          <a href="#products" class="category-card">
+            <span>🌿</span>
+            <h3>環保生活</h3>
+            <p>重複使用更安心</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products -->
+    <section class="products-section" id="products">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">OUR COLLECTION</p>
+            <h2>熱門水壺</h2>
+          </div>
+          <p class="section-note">10 款風格，總有一款適合你</p>
+        </div>
+
+        <div class="product-grid">
+
+          <article class="product-card">
+            <div class="product-image"><img src="images/01.png" alt="透明水壺"></div>
+            <div class="product-info">
+              <span class="tag">人氣</span>
+              <h3>透明日常水壺</h3>
+              <p>簡約透明設計，隨時看見剩餘水量。</p>
+              <div class="product-bottom"><strong>NT$399</strong><button onclick="addToCart('透明日常水壺')">加入購物車</button></div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-image"><img src="images/02.png" alt="保溫保冷瓶"></div>
+            <div class="product-info">
+              <span class="tag">保溫</span>
+              <h3>暖心保溫保冷瓶</h3>
+              <p>適合上課、通勤與長時間外出使用。</p>
+              <div class="product-bottom"><strong>NT$1,080</strong><button onclick="addToCart('暖心保溫保冷瓶')">加入購物車</button></div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-image"><img src="images/03.png" alt="大容量運動水壺"></div>
+            <div class="product-info">
+              <span class="tag">運動</span>
+              <h3>大容量運動水壺</h3>
+              <p>2000ml 大容量，運動時補充水分更方便。</p>
+              <div class="product-bottom"><strong>NT$650</strong><button onclick="addToCart('大容量運動水壺')">加入購物車</button></div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-image"><img src="images/04.png" alt="玻璃水壺"></div>
+            <div class="product-info">
+              <span class="tag">玻璃</span>
+              <h3>清新玻璃水壺</h3>
+              <p>清透外型，適合喜歡自然簡約風格的你。</p>
+              <div class="product-bottom"><strong>NT$780</strong><button onclick="addToCart('清新玻璃水壺')">加入購物車</button></div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-image"><img src="images/05.png" alt="折疊水壺"></div>
+            <div class="product-info">
+              <span class="tag">旅行</span>
+              <h3>輕旅折疊水壺</h3>
+              <p>可折疊設計，旅行收納輕鬆不佔空間。</p>
+              <div class="product-bottom"><strong>NT$590</strong><button onclick="addToCart('輕旅折疊水壺')">加入購物車</button></div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-image"><img src="images/06.png" alt="吸管水壺"></div>
+            <div class="product-info">
+              <span class="tag">便利</span>
+              <h3>隨手吸管水壺</h3>
+              <p>單手即可飲用，日常使用快速又方便。</p>
+              <div class="product-bottom"><strong>NT$520</strong><button onclick="addToCart('隨手吸管水壺')">加入購物車</button></div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-image"><img src="images/07.png" alt="不鏽鋼保溫瓶"></div>
+            <div class="product-info">
+              <span class="tag">耐用</span>
+              <h3>經典不鏽鋼保溫瓶</h3>
+              <p>簡約俐落外型，適合每天使用。</p>
+              <div class="product-bottom"><strong>NT$1,280</strong><button onclick="addToCart('經典不鏽鋼保溫瓶')">加入購物車</button></div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-image"><img src="images/08.png" alt="兒童水壺"></div>
+            <div class="product-info">
+              <span class="tag">親子</span>
+              <h3>繽紛兒童水壺</h3>
+              <p>可愛造型與方便提帶，適合日常使用。</p>
+              <div class="product-bottom"><strong>NT$450</strong><button onclick="addToCart('繽紛兒童水壺')">加入購物車</button></div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-image"><img src="images/09.png" alt="濾芯旅行水壺"></div>
+            <div class="product-info">
+              <span class="tag">濾水</span>
+              <h3>旅行濾芯水壺</h3>
+              <p>內附濾芯概念設計，適合旅行與戶外使用。</p>
+              <div class="product-bottom"><strong>NT$1,180</strong><button onclick="addToCart('旅行濾芯水壺')">加入購物車</button></div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-image"><img src="images/10.png" alt="運動噴霧水壺"></div>
+            <div class="product-info">
+              <span class="tag">新品</span>
+              <h3>運動噴霧水壺</h3>
+              <p>飲水與噴霧功能結合，戶外活動更加便利。</p>
+              <div class="product-bottom"><strong>NT$680</strong><button onclick="addToCart('運動噴霧水壺')">加入購物車</button></div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about">
+      <div class="container about-grid">
+        <div>
+          <p class="eyebrow">WHY US</p>
+          <h2>讓喝水成為<br>生活中的小確幸</h2>
+        </div>
+        <div class="about-content">
+          <p>我們相信，一個好用又好看的水壺，可以讓日常生活變得更舒服。</p>
+          <div class="features">
+            <div><span>01</span><h3>簡約設計</h3><p>耐看、百搭，適合不同生活風格。</p></div>
+            <div><span>02</span><h3>多種選擇</h3><p>從通勤到運動，滿足不同需求。</p></div>
+            <div><span>03</span><h3>安心材質</h3><p>挑選適合日常使用的材質與設計。</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <div class="section-heading center">
+          <p class="eyebrow">FAQ</p>
+          <h2>常見問題</h2>
+        </div>
+
+        <div class="faq-list">
+          <details>
+            <summary>商品多久可以送到？</summary>
+            <p>一般訂單約 2～5 個工作天送達，實際時間依物流狀況而定。</p>
+          </details>
+          <details>
+            <summary>可以退換貨嗎？</summary>
+            <p>商品如有瑕疵或符合退換貨條件，請依購物平台的退換貨規範辦理。</p>
+          </details>
+          <details>
+            <summary>網站可以直接完成付款嗎？</summary>
+            <p>目前此網站為電商展示與課堂製作用途，購物車按鈕僅提供互動展示，不會真的扣款。</p>
+          </details>
+          <details>
+            <summary>這個網站可以用手機瀏覽嗎？</summary>
+            <p>可以，網站採用響應式設計，會依手機、平板與電腦螢幕自動調整。</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-wrap">
+      <div>
+        <div class="logo">日常<span>好水</span></div>
+        <p>選一個喜歡的水壺，讓喝水變成更快樂的事。</p>
+      </div>
+      <p>© 2026 日常好水｜教學展示網站</p>
+    </div>
+  </footer>
+
+  <script>
+    let cartCount = 0;
+
+    function addToCart(productName) {
+      cartCount++;
+      document.getElementById("cart-count").textContent = cartCount;
+      alert("「" + productName + "」已加入購物車！");
+    }
+
+    function showCart() {
+      if (cartCount === 0) {
+        alert("購物車目前是空的！");
+      } else {
+        alert("購物車目前有 " + cartCount + " 件商品。\n本網站為教學展示用途，尚未串接實際付款功能。");
+      }
+    }
+  </script>
+</body>
+</html>
